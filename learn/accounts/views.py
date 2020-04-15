@@ -11,7 +11,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
 
         if user is not None:
-            print(user)
+            print(username, password)
             auth.login(request, user)
             return redirect("/")
         else:
@@ -47,3 +47,8 @@ def register(request):
             return redirect('register')
     else:
         return render(request, 'register.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
